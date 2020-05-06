@@ -3,6 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import React from 'react';
 
 import Posts from '../../containers/Posts/Posts';
+import { Counter } from '../../features/counter/Counter';
 
 function Home() {
   return (
@@ -11,6 +12,7 @@ function Home() {
         Posts
       </Typography>
       <Posts />
+      <Counter />
     </Container>
   )
 }
