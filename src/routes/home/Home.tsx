@@ -1,5 +1,8 @@
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
 import React from 'react';
-import { Typography, Grid, Card, CardContent } from '@material-ui/core';
+
+import Posts from '../../containers/Posts/Posts';
 
 function Home() {
   const posts = [
@@ -17,17 +20,12 @@ function Home() {
     }
   ]
   return (
-    <Grid container>
-      {posts.map(post => (
-        <Card key={post.id}>
-          <CardContent>
-            <Typography>
-              {post.title}
-            </Typography>
-          </CardContent>
-        </Card>
-      ))}
-    </Grid>
+    <Container>
+      <Typography variant="h1">
+        Posts
+      </Typography>
+      <Posts />
+    </Container>
   )
 }
 
