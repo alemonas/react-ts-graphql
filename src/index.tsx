@@ -1,3 +1,4 @@
+import ApolloClient, { gql } from 'apollo-boost';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -5,6 +6,19 @@ import App from './components/App';
 import { store } from './app/store';
 import { Provider as ReduxProvider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
+
+const client = new ApolloClient({
+  uri: 'https://graphqlzero.almansi.me/api'
+});
+
+client.query({ query: gql`
+  {
+    user(id: 1) {
+      id
+      name
+    }
+  }
+`}).then(console.log);
 
 ReactDOM.render(
   <React.StrictMode>
