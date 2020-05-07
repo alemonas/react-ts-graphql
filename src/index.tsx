@@ -1,32 +1,28 @@
-import ApolloClient, { gql } from 'apollo-boost';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './components/App';
-import { store } from './app/store';
-import { Provider as ReduxProvider } from 'react-redux';
-import * as serviceWorker from './serviceWorker';
+import { ApolloProvider } from "@apollo/react-hooks";
+import ApolloClient from "apollo-boost";
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./components/App";
+import { store } from "./app/store";
+import { Provider as ReduxProvider } from "react-redux";
+import * as serviceWorker from "./serviceWorker";
 
 const client = new ApolloClient({
-  uri: 'https://graphqlzero.almansi.me/api'
+  uri:
+    process.env.REACT_APP_GRAPHQL_FAKE_API ||
+    "https://graphqlzero.almansi.me/api",
 });
-
-client.query({ query: gql`
-  {
-    user(id: 1) {
-      id
-      name
-    }
-  }
-`}).then(console.log);
 
 ReactDOM.render(
   <React.StrictMode>
-    <ReduxProvider store={store}>
-      <App />
-    </ReduxProvider>
+    <ApolloProvider client={client}>
+      <ReduxProvider store={store}>
+        <App />
+      </ReduxProvider>
+    </ApolloProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change

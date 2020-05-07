@@ -1,18 +1,49 @@
+import { useQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
 import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 import React from 'react';
 
-import Posts from '../../containers/Posts/Posts';
-import { Counter } from '../../features/counter/Counter';
+import PostsList from '../../containers/Posts/PostsList';
 
-function Home() {
+const EXCHANGE_RATES = gql`
+query (
+  $options: PageQueryOptions
+) {
+  posts(options: $options) {
+    data {
+      id
+      title
+      body
+    }
+    meta {
+      totalCount
+    }
+  }
+}
+`;
+
+const Home: React.FC = () => {
+  const { loading, error, data } = useQuery(EXCHANGE_RATES, {
+    variables: {
+      "options": {
+        "paginate": {
+          "page": 1,
+          "limit": 10
+        }
+      }
+    }
+  });
+  
+  if (loading) return <CircularProgress />;
+  if (error) return <p>Error :(</p>;
+
+  const posts = data.posts.data;
+
   return (
     <Container>
-      <Typography variant="h1">
-        Posts
-      </Typography>
-      <Posts />
-      <Counter />
+      <PostsList posts={posts} />
     </Container>
   )
 }
