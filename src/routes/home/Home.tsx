@@ -3,9 +3,15 @@ import { gql } from 'apollo-boost';
 import Container from '@material-ui/core/Container';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
+
+import { loadEntriesAsync } from '../../redux/entriesSlice'
+import { loadPosts } from '../../redux/actions/postActions';
 import PostsList from '../../containers/Posts/PostsList';
+import { Counter } from '../../features/counter/Counter';
+
 
 const EXCHANGE_RATES = gql`
 query (
@@ -25,6 +31,21 @@ query (
 `;
 
 const Home: React.FC = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadPosts());
+    dispatch(loadEntriesAsync());
+  }, [dispatch]);
+
+  const posts2 = useSelector((state: any) => {
+    return state.posts;
+  });
+
+  const entries = useSelector((state: any) => {
+    return state.entries;
+  })
+
   const { loading, error, data } = useQuery(EXCHANGE_RATES, {
     variables: {
       "options": {
@@ -35,6 +56,11 @@ const Home: React.FC = () => {
       }
     }
   });
+
+  useEffect(() => {
+    console.log(posts2)
+    console.log('entries', entries);
+  })
   
   if (loading) return <CircularProgress />;
   if (error) return <p>Error :(</p>;
@@ -44,6 +70,7 @@ const Home: React.FC = () => {
   return (
     <Container>
       <PostsList posts={posts} />
+      <Counter />
     </Container>
   )
 }
