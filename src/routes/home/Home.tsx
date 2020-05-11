@@ -8,16 +8,19 @@ import { loadPostsAsync, postsSelector } from '../../redux/postsSlice';
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
-  const { data: posts } = useSelector(postsSelector);
+  const { loading, data: posts } = useSelector(postsSelector);
 
   useEffect(() => {
     dispatch(loadPostsAsync());
   }, [dispatch]);
 
   return (
-    <Container>
-      <PostsList posts={posts} />
-    </Container>
+    <>
+      {loading && 'loading posts...'}
+      <Container>
+        <PostsList posts={posts} />
+      </Container>
+    </>
   )
 }
 
