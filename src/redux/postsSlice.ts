@@ -31,7 +31,7 @@ export const postsSlice = createSlice({
       state.loading = false;
       state.hasErrors = false;
     },
-    loadPostsFailure: (state) => {
+    loadPostsFailure: state => {
       state.loading = false;
       state.hasErrors = true;
     },

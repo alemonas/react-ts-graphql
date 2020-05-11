@@ -2,8 +2,8 @@ import Container from '@material-ui/core/Container';
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { loadPostsAsync, postsSelector } from '../../redux/postsSlice';
 import PostsList from '../../containers/Posts/PostsList';
+import { loadPostsAsync, postsSelector } from '../../redux/postsSlice';
 
 
 const Home: React.FC = () => {
