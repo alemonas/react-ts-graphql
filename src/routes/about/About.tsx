@@ -1,10 +1,14 @@
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
 import React from 'react';
 
-function About() {
+const About: React.FC = () => {
   return (
-    <div>
-      About Us Page
-    </div>
+    <Box>
+      <Typography>
+        About Us Page
+      </Typography>
+    </Box>
   );
 }
 
