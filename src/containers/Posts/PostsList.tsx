@@ -1,12 +1,14 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import Post, { IPost } from './Post';
+import Post from './Post';
+import { IPost } from '../../api/blogApi';
 
 interface IProps {
   posts: IPost[];
 };
 
-const PostsList: React.FC<IProps> = ({ posts }) => {
+const PostsList: React.FC<IProps> = ({ posts = [] }) => {
+
   return (
     <Grid container spacing={4}>
       {posts.map((post) => {

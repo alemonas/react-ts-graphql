@@ -1,17 +1,11 @@
 import { configureStore, ThunkAction, Action, getDefaultMiddleware } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
-import postReducer from '../redux/reducers/postReducer';
-import entriesReducer from '../redux/entriesSlice';
 import logger from 'redux-logger';
+import rootReducer from '.';
 
 const reduxMiddlewares = [...getDefaultMiddleware(), logger]
 
 export const store = configureStore({
-  reducer: {
-    counter: counterReducer,
-    post: postReducer,
-    entries: entriesReducer,
-  },
+  reducer: rootReducer,
   middleware: reduxMiddlewares, 
 });
 

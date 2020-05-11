@@ -4,14 +4,9 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-
 import React from 'react';
 
-export interface IPost {
-  id: string;
-  title: string;
-  body: string;
-}
+import { IPost } from '../../api/blogApi';
 
 interface IProps {
   post: IPost;
