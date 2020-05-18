@@ -1,5 +1,6 @@
-import { configureStore, ThunkAction, Action, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { Action, configureStore, getDefaultMiddleware, ThunkAction, } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
+
 import rootReducer from '.';
 
 const reduxMiddlewares = [...getDefaultMiddleware(), logger]

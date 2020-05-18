@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AppThunk } from './store';
+
 import { getPosts, IPost } from '../api/blogApi';
+import { AppThunk } from './store';
 
 export interface IPostsState {
   hasErrors: boolean;
@@ -31,7 +32,7 @@ export const postsSlice = createSlice({
       state.loading = false;
       state.hasErrors = false;
     },
-    loadPostsFailure: (state) => {
+    loadPostsFailure: state => {
       state.loading = false;
       state.hasErrors = true;
     },
@@ -40,8 +41,8 @@ export const postsSlice = createSlice({
 
 export const {
   loadPosts,
-  loadPostsSuccess,
   loadPostsFailure,
+  loadPostsSuccess,
 } = postsSlice.actions;
 
 export const postsSelector = (state: any) => state.posts;
