@@ -5,7 +5,7 @@ import React from 'react';
 const About: React.FC = () => {
   return (
     <Box>
-      <Typography>
+      <Typography variant="h2">
         About Us Page
       </Typography>
     </Box>
