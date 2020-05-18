@@ -49,6 +49,14 @@ export const getPosts = async () => {
   try {
     const response: ApolloQueryResult<any> = await client.query({
       query: GET_POSTS,
+      variables: {
+        options: {
+          paginate: {
+            page: 1,
+            limit: 5,
+          },
+        },
+      },
     });
 
     console.log(response);
